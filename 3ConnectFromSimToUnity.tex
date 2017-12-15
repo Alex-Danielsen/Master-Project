@@ -1,0 +1,10 @@
+\chapter{ReVolt Simulator Data}
+\todo[inline]{This might end up becoming part of the Unity Application chapter}
+The ReVolt Simulator is an application developed by DNV GL to simulate the ReVolt model. It includes detailed parameters to tune the ocean, the vessel, the obstacles, and the DP (dynamic positioning) algorithm among other aspects. It also includes detailed outputs about all of these characteristics. These outputs can be read by the Unity Application through an WebForm call to the API. Functions were developed to parse the information retrieved as parameter, input and output data, and then store the data appropriately.
+
+The main information retrieved from the simulated ReVolt is its 6 dimensional position and orientation vector. The virtual ReVolt can then follow exactly the movements of the ReVolt in the simulator.
+
+The obstacle objects in the simulator are copies of the ReVolt model. For these obstacles, it suffices to retrieve the 3 degree of freedom (x, y, $\theta$) position and orientation vector, as these dimensions describe the main movements of the obstacles. This is to reduce the load on the API calls, in the case of tests with many obstacles.
+
+The wave object transmit the most data, ....
+\todo[inline]{write more about waves after I figure it out... idea to take inputs and redo sim calcs, as loading and parsing 1000 items is too much to do at a 20 Hz update}

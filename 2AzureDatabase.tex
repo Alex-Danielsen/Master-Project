@@ -1,0 +1,10 @@
+\chapter{Azure IoT (Internet of Things) Hub}
+\section{Processing in Azure}
+
+\section{Connection to ReVolt}
+
+\section{Connection to Unity}
+Incoming data is processed in two different ways, on a hot and cold data path. A hot path refers to a data stream that processes data with no relation to the previous data. In this case, the data are the realtime information coming from the ReVolt model. The data are streamed through the Azure service to the Unity Application for use in Twin mode.
+
+The cold path refers to data which will be analyzed as a whole, and in retrospect, using big data techniques. Analysis does not occur on-the-fly, so the most important step is storing the data. The data is stored in an SQL Database in the Azure service. In the Unity Application's Playback mode, the data from the database is retrieved to visualize certain specific events.
+\todo[inline]{I need to expand this, but figured I'd put something down for now.}

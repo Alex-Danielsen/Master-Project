@@ -1,0 +1,99 @@
+\documentclass[11pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry} % Required to change the page size to A4
+\linespread{1.0}
+\geometry{a4paper} % Set the page size to be A4 as opposed to the default US Letter
+
+\title{Virtual World and Digital Twin Modelling for an Autonomous Boat}
+\author{Alexander Danielsen-Haces}
+\date{Fall 2017}
+
+\usepackage{filecontents,lipsum}
+\usepackage[noadjust]{cite}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{pdfpages}
+\usepackage{blindtext}
+\usepackage{tocloft}
+\usepackage{float}
+\usepackage{fullpage}
+\usepackage{todonotes}
+\usepackage{cleveref}
+\usepackage{tabulary}
+
+
+\setlength{\parskip}{\baselineskip} %I added this for better paragraph spacing, but it might screw other things up
+\setlength{\parindent}{0pt}         %I added this for better paragraph spacing, but it might screw other things up
+\setcitestyle{square}
+
+\begin{document}
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+
+\textsc{\LARGE Norwegian University of Science and Technology}\\[1.5cm] % Name of your university/college
+\textsc{\Large TTK4551 - Engineering Cybernetics, Specialization Project}\\[0.5cm] % Major heading such as course name
+\HRule \\[0.4cm]
+{ \huge \bfseries Virtual World and Digital Twin Modelling for an Autonomous Boat}\\ % Title of your document
+\HRule \\[1.0cm]
+\begin{minipage}{0.7\textwidth}
+\emph{Written by:}\\
+Alexander \textsc{Danielsen-Haces}\\
+
+\emph{Supervisors:}\\
+Morten \textsc{Breivik} (NTNU)\\
+Tom Arne \textsc{Pedersen} (DNV GL)
+
+\end{minipage}
+\newline
+\begin{center}
+{\large Fall 2017}\\[1cm]
+\end{center}
+
+
+
+
+\end{titlepage}
+
+
+\titleformat{\chapter}
+  {\normalfont\LARGE\bfseries}{\thechapter}{1em}{}
+\newpage
+
+\pagenumbering{roman}
+
+% Sections
+\newpage
+\input{abstract.tex}
+\newpage
+\input{preface.tex}
+\newpage
+\tableofcontents
+\pagenumbering{arabic}
+\input{introduction.tex}
+\input{1UnityModel.tex}
+\input{2AzureDatabase.tex}
+\input{3ConnectFromSimToUnity.tex}
+\input{4ControlOfReVolt.tex}
+\input{discussion.tex}
+\input{conclusion.tex}
+
+\newpage
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+\newpage
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+\newpage
+\input{nomenclature.tex}
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
