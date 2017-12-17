@@ -1,16 +1,52 @@
 \chapter{Unity Application}
-The Unity application is the visualization of the digital twin and the world around it.
+The Unity application is the visualization of the digital twin and the world around it. 
+
+Unity is a 3d game creation engine. Useful Unity features for this project include a high fidelity physics engine, a UI builder to allow for interactivity, and the versatile deployment. Games created in Unity can be deployed as applications to many different hosts include as a WebApp to WebGL \cite{unityOverview}.
+
+
 
 \section{Modes}
-The application can be run in three modes. The first mode, Sim Mode, retrieves data from the ReVolt Simulator to visualize. This mode is useful for visualizing ReVolt, when the ReVolt model is not available. This mode was also useful in development of the application without needing continual access to ReVolt.
+The application can be run in three modes. The first mode, Sim Mode, retrieves data from the ReVolt Simulator to visualize. This mode is useful for visualizing ReVolt, when the ReVolt model is not available. This mode was also useful in development of the Unity application without needing continual access to ReVolt. The sequence of events in this mode is summarized in \Cref{fig:sequenceSimMode}.
 
-The second mode, Twin Mode, retrieves data directly from the ReVolt model through the Azure IoT Hub. In this mode, the application and the ReVolt model are functioning together. Information about the position and orientation of the boat, the position of real world obstacles and other relevant information is sent to the application. At the same time, information about virtually placed objects/obstacles and control commands are sent to the ReVolt model. This mode can be used to test the model with virtual objects, to visualize ReVolt and it's environment from a remote location, and to save information in the IoT Hub for later reference.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/Sequence_Diagram_sim.pdf}
+\caption{Sequence Diagram for Sim Mode}
+\label{fig:sequenceSimMode}
+\end{figure}
 
-The third mode, Playback Mode, retrieves stored data from the IoT Hub to playback previous scenarios. This can be useful in replaying and analyzing a fault scenario, a specific test case or using specific environment conditions. The stored data is retrieved from the Azure IoT SQL Databases.
+The second mode, Twin Mode, retrieves data directly from the ReVolt model through a TCP WebSocket connection. In this mode, the application and the ReVolt model are functioning together. Information about the position and orientation of the boat, the position of real world obstacles and other relevant information is sent to the application. At the same time, information about virtually placed objects/obstacles and control commands are sent to the ReVolt model. This mode can be used to test the model with virtual objects, to visualize ReVolt and it's environment from a remote location, and to save information in the IoT Hub for later reference. The sequence of events in this mode is summarized in \Cref{fig:sequenceTwinMode}.
+\todo[inline]{Fix this diagram, needs obstacles sending and also cut out Azure IoT Hub connection}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/Sequence_Diagram_twin.pdf}
+\caption{Sequence Diagram for Twin Mode}
+\label{fig:sequenceTwinMode}
+\end{figure}
+
+
+The third mode, Playback Mode, retrieves stored data from the IoT Hub to playback previous scenarios. This can be useful in replaying and analyzing a fault scenario, a specific test case or using specific environment conditions. The stored data is retrieved from the Azure IoT SQL Databases. The sequence of events in this mode is summarized in \Cref{fig:sequencePlaybackMode}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/Sequence_Diagram_Playback.pdf}
+\caption{Sequence Diagram for Playback Mode}
+\label{fig:sequencePlaybackMode}
+\end{figure}
+
+It is important to account for situations when the user wishes to enter one of the modes, but the system is not able to correctly handle that mode currently. For example, if the simulator is not running and the user wishes to enter Sim Mode, the application informs the user that the Simulator is not connected at the moment, and it enters an idle state. These interactions are described by the state machine in \Cref{fig:modeStateMachine}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{Images/StateMachine.pdf}
+\caption{State Machine for Shifting between User Modes}
+\label{fig:modeStateMachine}
+\end{figure}
+
 
 \section{Virtual ReVolt}
 
-The virtual ReVolt in the Unity Application is the visualization of the digital twin. It is comprised of 2 computer models. The first model is a detailed CAD model of ReVolt imported into Unity ( \Cref{fig:detailedReVoltModel}). This model keeps the aesthetics and details of the boat. The second is a simplified model that is overlaid onto the detailed model, but is not visible ( \Cref{fig:SimplifiedReVoltModel}). This model serves a dual purpose. First, if any large physics calculations need to be done in the Unity Application, this would not be reasonable on the detailed model, but can be easily done on the simplified model. The second purpose of the simplified model is to function as an indicator to collisions, as it will turn red during collisions.
+The virtual ReVolt in the Unity Application is the visualization of the digital twin. It is comprised of 2 computer models. The first model is a detailed CAD model of ReVolt imported into Unity (\Cref{fig:detailedReVoltModel}). This model keeps the aesthetics and details of the boat. The second is a simplified model that is overlaid onto the detailed model, but is not visible ( \Cref{fig:SimplifiedReVoltModel}). This model serves a dual purpose. First, if any large physics calculations need to be done in the Unity Application, this would not be reasonable on the detailed model, but can be easily done on the simplified model. The second purpose of the simplified model is to function as an indicator to collisions, as it will turn red during collisions.
 
 \begin{figure}[H]
 \centering

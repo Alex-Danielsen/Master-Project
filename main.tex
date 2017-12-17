@@ -23,6 +23,7 @@
 \usepackage{todonotes}
 \usepackage{cleveref}
 \usepackage{tabulary}
+\usepackage{caption}
 
 
 \setlength{\parskip}{\baselineskip} %I added this for better paragraph spacing, but it might screw other things up
@@ -30,6 +31,7 @@
 \setcitestyle{square}
 
 \begin{document}
+\traceall
 \begin{titlepage}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
@@ -74,15 +76,6 @@ Tom Arne \textsc{Pedersen} (DNV GL)
 \input{preface.tex}
 \newpage
 \tableofcontents
-\pagenumbering{arabic}
-\input{introduction.tex}
-\input{1UnityModel.tex}
-\input{2AzureDatabase.tex}
-\input{3ConnectFromSimToUnity.tex}
-\input{4ControlOfReVolt.tex}
-\input{discussion.tex}
-\input{conclusion.tex}
-
 \newpage
 \listoffigures
 \addcontentsline{toc}{chapter}{List of Figures}
@@ -91,6 +84,17 @@ Tom Arne \textsc{Pedersen} (DNV GL)
 \addcontentsline{toc}{chapter}{List of Tables}
 \newpage
 \input{nomenclature.tex}
+\addcontentsline{toc}{chapter}{Nomenclature}
+\pagenumbering{arabic}
+\input{introduction.tex}
+\input{1UnityModel.tex}
+\input{2AzureDatabase.tex}
+\input{3ConnectFromSimToUnity.tex}
+%\input{4ControlOfReVolt.tex}
+\input{discussion.tex}
+\input{conclusion.tex}
+
+
 
 \addcontentsline{toc}{chapter}{Bibliography}
 \bibliographystyle{IEEEtran}
